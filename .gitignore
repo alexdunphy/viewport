@@ -1,0 +1,12 @@
+### Node ###
+logs/
+*.log
+node_modules/
+
+### OS X ###
+.DS_Store
+
+### Test ###
+/test/vendor/lib.js
+/test/coverage/
+.env
