@@ -80,6 +80,12 @@ var logger = {
   },
   'log': function() {
     gutil.log.call(null, logger.format.apply(null, arguments));
+  },
+  'success': function(plugin, message) {
+    gulp.src('').pipe(notify({ // gulp.src is a hack to get pipes working w/out a real stream
+      'title': '✅  ' + plugin,
+      'message': 'OK: ' + logger.format(message)
+    }));
   }
 };
 
@@ -130,16 +136,23 @@ var runWebpack = function(done, options) {
   };
 
   webpack(_.merge({}, webpackConfig, options), function(error, stats) {
-    var end = function() {
+    var end;
+
+    if (stats.hasErrors) {
+      error = stats.compilation.errors[0];
+    } else if (stats.hasWarnings) {
+      error = stats.compilation.warnings[0];
+    }
+
+    if (error) {
+      logger.error.call(this, new gutil.PluginError('webpack', error.error));
+    } else {
+      logger.success('webpack', stats.compilation.outputOptions.path + stats.compilation.outputOptions.filename);
+    }
+
+    end = function() {
       done(+!!error);
     };
-
-    if (stats.compilation.errors.length > 0) {
-      error = true;
-      logger.error.call(this, new gutil.PluginError('webpack', {
-        'message': stats.compilation.errors[0].message
-      }));
-    }
 
     if (global.isWatching) {
       if (!error) {
