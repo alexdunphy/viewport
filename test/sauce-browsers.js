@@ -17,7 +17,8 @@ module.exports = {
   },
   'sauceSafari': {
     'base': 'SauceLabs',
-    'browserName': 'Safari'
+    'browserName': 'Safari',
+    'platform': 'OS X 10.10'
   },
   'sauceAndroid': {
     'base': 'SauceLabs',
@@ -25,7 +26,8 @@ module.exports = {
   },
   'sauceIphone': {
     'base': 'SauceLabs',
-    'browserName': 'iPhone'
+    'browserName': 'iPhone',
+    'version': '8.4'
   },
   'sauceIe11': {
     'base': 'SauceLabs',
