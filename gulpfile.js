@@ -40,7 +40,7 @@ config.path.lib = config.path.root + 'lib/';
 config.pkg = require(config.path.root + 'package.json');
 config.lib = {
   'entry': config.path.root + config.pkg.main,
-  'exports': 'Viewport',
+  'exports': 'viewport',
   'file': 'viewport.js', // Output file name
   'sources': [
     config.path.lib,

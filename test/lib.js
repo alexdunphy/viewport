@@ -1,5 +1,5 @@
-var Viewport =
-webpackJsonpViewport([0,1],[
+var viewport =
+webpackJsonpviewport([0,1],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
