@@ -18,7 +18,7 @@ module.exports = {
   'sauceSafari': {
     'base': 'SauceLabs',
     'browserName': 'Safari',
-    'platform': 'OS X 10.10'
+    'version': '8.1'
   },
   'sauceAndroid': {
     'base': 'SauceLabs',
