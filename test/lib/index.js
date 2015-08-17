@@ -14,21 +14,21 @@ describe('viewport', function() {
   });
 
   it('should agree with jQuery about viewport width', function() {
-    expect(viewport.getWidth()).to.equal(jQueryWinWidth);
+    expect(viewport.width()).to.equal(jQueryWinWidth);
   });
 
   it('should agree with jQuery about viewport height', function() {
-    expect(viewport.getHeight()).to.equal(jQueryWinHeight);
+    expect(viewport.height()).to.equal(jQueryWinHeight);
   });
 
-  it('should return the largest dimension in #getMax', function() {
-    expect(viewport.getMax()).to.equal(
+  it('should return the largest dimension in #max', function() {
+    expect(viewport.max()).to.equal(
       Math.max(jQueryWinWidth, jQueryWinHeight)
     );
   });
 
-  it('should return the smallest dimension in #getMin', function() {
-    expect(viewport.getMin()).to.equal(
+  it('should return the smallest dimension in #min', function() {
+    expect(viewport.min()).to.equal(
       Math.min(jQueryWinWidth, jQueryWinHeight)
     );
   });

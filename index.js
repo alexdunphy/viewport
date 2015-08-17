@@ -1,4 +1,4 @@
-/* eslint-env browser */
+/* eslint-env browser, node */
 
 'use strict';
 
@@ -10,25 +10,27 @@ var height = -1;
 // Public interface
 //------------------------------------------------------------------------------
 
-viewport.getWidth = function() {
+viewport.width = function() {
   return width;
 };
 
-viewport.getHeight = function() {
+viewport.height = function() {
   return height;
 };
 
-viewport.getMax = function() {
+viewport.max = function() {
   return Math.max(width, height);
 };
 
-viewport.getMin = function() {
+viewport.min = function() {
   return Math.min(width, height);
 };
 
 viewport.setDimensions = function() {
-  width = document.documentElement.clientWidth;
-  height = document.documentElement.clientHeight;
+  if (typeof document !== 'undefined') {
+    width = document.documentElement.clientWidth;
+    height = document.documentElement.clientHeight;
+  }
 };
 
 

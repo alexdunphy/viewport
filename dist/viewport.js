@@ -62,7 +62,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 1 */
 /***/ function(module, exports) {
 
-	/* eslint-env browser */
+	/* eslint-env browser, node */
 
 	'use strict';
 
@@ -74,19 +74,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	// Public interface
 	//------------------------------------------------------------------------------
 
-	viewport.getWidth = function() {
+	viewport.width = function() {
 	  return width;
 	};
 
-	viewport.getHeight = function() {
+	viewport.height = function() {
 	  return height;
 	};
 
-	viewport.getMax = function() {
+	viewport.max = function() {
 	  return Math.max(width, height);
 	};
 
-	viewport.getMin = function() {
+	viewport.min = function() {
 	  return Math.min(width, height);
 	};
 
