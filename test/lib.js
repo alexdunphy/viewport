@@ -39,8 +39,11 @@ webpackJsonpviewport([0,1],[
 	};
 
 	viewport.setDimensions = function() {
-	  width = document.documentElement.clientWidth;
-	  height = document.documentElement.clientHeight;
+	  /* istanbul ignore else */
+	  if (typeof document !== 'undefined') {
+	    width = document.documentElement.clientWidth;
+	    height = document.documentElement.clientHeight;
+	  }
 	};
 
 
@@ -51,7 +54,7 @@ webpackJsonpviewport([0,1],[
 	  viewport.setDimensions();
 	};
 
-	/* istanbul ignore else  */
+	/* istanbul ignore else */
 	if (typeof window !== 'undefined') {
 	  window.addEventListener('resize', viewport.onWindowResize, false);
 	  window.addEventListener('orientationchange', viewport.onWindowResize, false);
