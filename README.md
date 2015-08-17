@@ -6,8 +6,6 @@
 
 # Viewport
 
----
-
 Simple utility for watching and retrieving browser viewport width, height, vmin and vmax.
 
 `documentElement.clientWidth` is used (rather than `window.innerWidth`), so reported viewport dimensions will exclude scrollbar dimensions.
