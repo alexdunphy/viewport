@@ -1,6 +1,7 @@
 ### Node ###
 logs/
 *.log
+npm-debug.log*
 node_modules/
 
 ### OS X ###
@@ -9,4 +10,4 @@ node_modules/
 ### Test ###
 /test/vendor/lib.js
 /test/coverage/
-.env
+/.env
