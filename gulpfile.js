@@ -34,6 +34,7 @@ config.path = {};
 config.path.root = require('path').resolve(__dirname) + '/';
 config.path.dist = config.path.root + 'dist/';
 config.path.test = config.path.root + 'test/';
+config.path.spec = config.path.test + 'spec/';
 config.path.lib = config.path.root + 'lib/';
 
 // Package
@@ -44,6 +45,7 @@ config.lib = {
   'file': 'viewport.js', // Output file name
   'sources': [
     config.path.lib,
+    config.path.root + 'bower_components/',
     config.path.root + 'node_modules/'
   ]
 };
@@ -54,7 +56,7 @@ config.karma = {
   'files': [
     {'pattern': config.path.test + 'vendor/**/*.js', 'watched': false},
     config.path.test + 'lib.js',
-    config.path.test + 'lib/**/*.js'
+    config.path.spec + '**/*.js'
   ],
   'preprocessors': {}
 };
@@ -69,11 +71,9 @@ var notify = require('gulp-notify');
 var logger = {
   'error': function(error) {
     notify.onError({
-      'title': 'Error (' + error.plugin + ')',
+      'title': '❌  ' + error.plugin,
       'message': logger.format(error.message)
-    }).apply(this, arguments);
-
-    this.emit('end'); // Prevent gulp hanging on task
+    }).call(this, error);
   },
   'format': function() {
     return [].slice.call(arguments).join(' ').replace(config.path.root, '', 'g');
@@ -180,7 +180,7 @@ gulp.task('webpack:dev', function(done) {
       new webpack.optimize.CommonsChunkPlugin({
         'filename': 'vendor/lib.js',
         'minChunks': function(chunk) {
-          return chunk.request && /^node_modules\//.test(chunk.request.replace(config.path.root, ''));
+          return chunk.request && /^bower_components\/|^node_modules\//.test(chunk.request.replace(config.path.root, ''));
         }
       })
     ],
@@ -197,6 +197,7 @@ gulp.task('webpack:dist', function(done) {
     }
   });
 });
+
 
 // Headers
 //------------------------------------------------------------------------------
@@ -215,6 +216,7 @@ gulp.task('headers', function() {
     .pipe(gulp.dest(config.path.dist));
 });
 
+
 // Lint
 //------------------------------------------------------------------------------
 
@@ -227,7 +229,7 @@ gulp.task('lint', function() {
   return gulp.src([
     config.lib.entry,
     config.path.lib + '**/*.js',
-    config.path.test + 'lib/**/*.js',
+    config.path.spec + '**/*.js',
     config.path.test + 'karma.js',
     config.path.test + 'sauce-browsers.js',
     config.karma.configFile,
@@ -236,8 +238,12 @@ gulp.task('lint', function() {
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.format(function(files) {
+      var error = false;
+
       _.forEach(files, function(file) {
-        if (file.messages.length > 0) {
+        error = file.messages.length > 0;
+
+        if (error) {
           logger.error.call(that, new gutil.PluginError('lint', {
             'message': file.filePath + ':' + file.messages[0].line + ' - ' + file.messages[0].message
           }));
@@ -245,9 +251,14 @@ gulp.task('lint', function() {
           return false; // (break)
         }
       });
+
+      if (!error) {
+        logger.success('lint', 'ESLint passed');
+      }
     }))
     .pipe(gulpif(!global.isWatching, eslint.failOnError()));
 });
+
 
 // Minify
 //------------------------------------------------------------------------------
@@ -261,6 +272,7 @@ gulp.task('uglify', function() {
     .pipe(rename(config.lib.file.replace(/\.js$/, '.min.js')))
     .pipe(gulp.dest(config.path.dist));
 });
+
 
 // Watch
 //------------------------------------------------------------------------------

@@ -7,6 +7,9 @@ node_modules/
 ### OS X ###
 .DS_Store
 
+### Bower ###
+bower_components/
+
 ### Test ###
 /test/vendor/lib.js
 /test/coverage/
