@@ -26,17 +26,21 @@ Simple utility for watching and retrieving browser viewport width, height, vmin 
 
 One object is exported:
 
-`var viewport = require('viewport');`
+```javascript
+var viewport = require('viewport');
+```
 
 #### API
 
-`#width()` - Returns _{Number}_ - Browser viewport width
+`#width()` - Returns _{number}_ - Browser viewport width.
 
-`#height()` - Returns _{Number}_ - Browser viewport height
+`#height()` - Returns _{number}_ - Browser viewport height.
 
-`#max()` - Returns _{Number}_ - Maximum browser dimension (width/height)
+`#max()` - Returns _{number}_ - Maximum browser dimension (width/height).
 
-`#min()` - Returns _{Number}_ - Minimum browser dimension (width/height)
+`#min()` - Returns _{number}_ - Minimum browser dimension (width/height).
+
+`#setDimensions()` - Set internal dimension references to current browser viewport width and height.
 
 #### Environment
 
