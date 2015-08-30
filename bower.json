@@ -10,8 +10,10 @@
   "ignore": [
     "**/*",
     "!index.js",
+    "!lib/**",
     "!dist/**",
-    "!LICENSE.md"
+    "!LICENSE.md",
+    "!.gitignore"
   ],
   "license": "MIT"
 }
