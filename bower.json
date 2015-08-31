@@ -1,7 +1,7 @@
 {
   "name": "viewport-dimensions",
   "description": "Simple utility for watching and retrieving browser viewport width, height, vmin and vmax",
-  "authors": ["Alex Dunphy"],
+  "authors": ["Alex Dunphy <alexanderdunphy@gmail.com>"],
   "repository": {
     "type": "git",
     "url": "git@github.com:alexdunphy/viewport.git"

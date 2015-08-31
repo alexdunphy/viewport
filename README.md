@@ -20,29 +20,50 @@ Simple utility for watching and retrieving browser viewport width, height, vmin 
 
 `npm i -S viewport-dimensions`
 
-## Use
-
-#### Exports
-
-One object is exported:
+(One object is exported:)
 
 ```javascript
 var viewport = require('viewport');
 ```
 
-#### API
+## API
 
-`#width()` - Returns _{number}_ - Browser viewport width.
+### #width()
+Returns _{number}_ - Browser viewport width.
 
-`#height()` - Returns _{number}_ - Browser viewport height.
+```javascript
+viewport.width(); // (e.g.) 1024
+```
 
-`#max()` - Returns _{number}_ - Maximum browser dimension (width/height).
+### #height()
+Returns _{number}_ - Browser viewport height.
 
-`#min()` - Returns _{number}_ - Minimum browser dimension (width/height).
+```javascript
+viewport.height(); // (e.g.) 768
+```
 
-`#setDimensions()` - Set internal dimension references to current browser viewport width and height.
+### #max()
+Returns _{number}_ - Maximum browser dimension (width/height).
 
-#### Environment
+```javascript
+viewport.max(); // (e.g.) 1024
+```
+
+### #min()
+Returns _{number}_ - Minimum browser dimension (width/height).
+
+```javascript
+viewport.height(); // (e.g.) 768
+```
+
+### #setDimensions()
+Set internal dimension references to current browser viewport width and height.
+
+```javascript
+viewport.setDimensions();
+```
+
+## Environment
 
 Won't generate errors if run server-side, but won't do anything too useful either.
 
