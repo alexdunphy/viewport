@@ -1,6 +1,5 @@
 /* eslint-env browser, mocha */
 /* global expect, viewport, sinon */
-/* eslint no-unused-expressions: 0 */
 
 'use strict';
 

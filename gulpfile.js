@@ -32,10 +32,10 @@ var config = {};
 // Paths
 config.path = {};
 config.path.root = require('path').resolve(__dirname) + '/';
+config.path.lib = config.path.root + 'lib/';
 config.path.dist = config.path.root + 'dist/';
 config.path.test = config.path.root + 'test/';
 config.path.spec = config.path.test + 'spec/';
-config.path.lib = config.path.root + 'lib/';
 
 // Package
 config.pkg = require(config.path.root + 'package.json');
@@ -221,11 +221,8 @@ gulp.task('headers', function() {
 //------------------------------------------------------------------------------
 
 var eslint = require('gulp-eslint');
-var gulpif = require('gulp-if');
 
 gulp.task('lint', function() {
-  var that = this;
-
   return gulp.src([
     config.lib.entry,
     config.path.lib + '**/*.js',
@@ -244,19 +241,19 @@ gulp.task('lint', function() {
         error = file.messages.length > 0;
 
         if (error) {
-          logger.error.call(that, new gutil.PluginError('lint', {
+          logger.error.call(this, new gutil.PluginError('lint', {
             'message': file.filePath + ':' + file.messages[0].line + ' - ' + file.messages[0].message
           }));
 
           return false; // (break)
         }
-      });
+      }.bind(this));
 
       if (!error) {
         logger.success('lint', 'ESLint passed');
       }
-    }))
-    .pipe(gulpif(!global.isWatching, eslint.failOnError()));
+    }.bind(this)))
+    .pipe(eslint.failOnError());
 });
 
 

@@ -15,5 +15,19 @@
     "!LICENSE.md",
     "!.gitignore"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": [
+    "viewport",
+    "browser",
+    "window",
+    "document",
+    "width",
+    "height",
+    "innerWidth",
+    "innerHeight",
+    "clientWidth",
+    "clientHeight",
+    "dimensions",
+    "dimension"
+  ]
 }
